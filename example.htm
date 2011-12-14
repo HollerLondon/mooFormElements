@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style type="text/css">
+  .checkbox, .radio {
+  	width: 19px;
+  	height: 25px;
+  	padding: 0 5px 0 0;
+  	background: url(Images/checkbox.png) no-repeat;
+  	display: block;
+  	clear: left;
+  	float: left;
+  }
+  .radio {
+  	background: url(Images/radio.png) no-repeat;
+  }
+  .select {
+  	position: absolute;
+  	width: 158px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+  	height: 21px;
+  	padding: 0 24px 0 8px;
+  	color: #fff;
+  	font: 12px/21px arial,sans-serif;
+  	background: url(Images/select.png) no-repeat;
+  	overflow: hidden;
+  }
+  
+  </style>
+<body>
+
+<form>
+  <p><input type="radio" name="radiobutton" value="a" class="styled" /> a</p>
+  <p><input type="radio" name="radiobutton" value="b" class="styled" /> b</p>
+  <p><input type="radio" name="radiobutton" value="c" class="styled" /> c</p>
+  <p><input type="radio" name="radiobutton" value="d" class="styled" /> d</p>
+  <p><input type="radio" name="radiobutton" value="e" class="styled" /> e</p>
+
+  <p><input type="checkbox" name="btn1" value="1" class="styled" /> ?</p>
+  <p><input type="checkbox" name="btn2" value="1" class="styled" /> ?</p>
+  <p><input type="checkbox" name="btn3" value="1" class="styled" /> ?</p>
+
+  <p><label>
+    Choose one:
+    <select name="foo" class="styled">
+      <option value="one">One</option>
+      <option value="two">Two</option>
+      <option value="three">Three</option>
+    </select>
+  </label></p>
+  <input type="submit" name="submit" />
+</form>
+</body>
+<script src="mootools-yui-compressed.js" type="text/javascript"></script>
+<script src="mooFormElements.js" type="text/javascript"></script>
+<script type="text/javascript">
+new mooFormElements;
+
+$(document.body).getElement('form').addEvent('submit',function (ev)
+{
+  ev.stop();
+  console.log(this.toQueryString());
+});
+
+</script>
+</html>
