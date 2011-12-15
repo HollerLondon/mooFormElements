@@ -1,5 +1,3 @@
-alert('mooforms');
-
 var mooFormElements = new Class({
   Implements: [ Options ],
   
