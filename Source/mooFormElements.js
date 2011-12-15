@@ -35,7 +35,8 @@ var mooFormElements = new Class({
     $$('select:not([multiple]).'+this.options.with_class).setStyles({
       'width':    this.options.select.width,
       'opacity':  0,
-      'z-index':  5
+      'border': '1px solid transparent',
+      'z-index': 2000
     })
     $$('input.disabled, select.disabled').setStyle('opacity',0.5);
   },
