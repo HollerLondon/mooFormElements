@@ -156,7 +156,7 @@ var mooFormElements = new Class({
           trigger.setStyle('background-position','0 -'+ this.options.checkbox.height*3 +'px');
           break;
         case 'radio':
-          trigger.setStyle('background-position','0 -'+ this.options.checkbox.height*3 +'px');
+          trigger.setStyle('background-position','0 -'+ this.options.radio.height*3 +'px');
           break;
       }
     }
@@ -202,7 +202,7 @@ var mooFormElements = new Class({
           break;
         // Radio buttons are more complex as they exist as part of a group
         case 'radio':
-          trigger.setStyle('background-position','0 -'+ this.options.checkbox.height*3 +'px');
+          trigger.setStyle('background-position','0 -'+ this.options.radio.height*3 +'px');
           group = input.get('name');
           $$('input[name='+ group +']').each(
             function (grouped_input)
