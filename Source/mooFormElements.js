@@ -21,9 +21,9 @@ var mooFormElements = new Class({
     this.hideElementsToStyle();
 
     // Sort out checkboxes and radio buttons
-    $$('input[type=radio].styled, input[type=checkbox].styled').each(this.replaceButtonWidget.bind(this));
+    $$('input[type=radio].styled, input[type=checkbox].styled').each (this.replaceButtonWidget.bind(this));
     // Sort out selects
-    $$('select.styled:not([multiple])').each(this.replaceSelectWidget.bind(this));
+    $$('select.styled:not([multiple])').each (this.replaceSelectWidget.bind(this));
   },
 
   /**
@@ -56,7 +56,7 @@ var mooFormElements = new Class({
     
     replacement.inject(input,'before');
     
-    if(input.get('disabled'))
+    if (input.get('disabled'))
     {
       replacement.addClass('disabled');
     }
@@ -94,14 +94,14 @@ var mooFormElements = new Class({
       'class':    widget.get('type')
     });
     
-    if(widget.checked)
+    if (widget.checked)
     {
-      switch(widget.get('type'))
+      switch (widget.get('type'))
       {
         case 'checkbox':
           replacement.setStyle('background-position','0 -'+(this.options.checkbox.height*2)+'px');
           break;
-        case 'checkbox':
+        case 'radio':
           replacement.setStyle('background-position','0 -'+(this.options.radio.height*2)+'px');
           break;
       }
@@ -109,7 +109,7 @@ var mooFormElements = new Class({
     
     replacement.inject(widget,'before');
 
-    if(widget.get('disabled'))
+    if (widget.get('disabled'))
     {
       replacement.addClass('disabled');
     }
@@ -131,7 +131,7 @@ var mooFormElements = new Class({
     trigger = ev.target;
     input   = trigger.getNext();
 
-    switch(ev.type)
+    switch (ev.type)
     {
       case 'mousedown':
         this.widgetMouseDown(trigger,input);
@@ -148,21 +148,23 @@ var mooFormElements = new Class({
    **/
   widgetMouseDown: function (trigger,input)
   {
-    if(input.checked)
+    console.log('down', input.checked, input.get('type'));
+    
+    if (input.checked)
     {
-      switch(input.get('type'))
+      switch (input.get('type'))
       {
         case 'checkbox':
           trigger.setStyle('background-position','0 -'+ this.options.checkbox.height*3 +'px');
           break;
         case 'radio':
-          trigger.setStyle('background-position','0 -'+ this.options.radio.height*3 +'px');
+          trigger.setStyle('background-position','0 -'+ this.options.checkbox.height*3 +'px');
           break;
       }
     }
     else
     {
-      switch(input.get('type'))
+      switch (input.get('type'))
       {
         case 'checkbox':
           trigger.setStyle('background-position','0 -'+ this.options.checkbox.height +'px');
@@ -180,9 +182,11 @@ var mooFormElements = new Class({
    **/
   widgetMouseUp: function (trigger,input)
   {
-    if(input.checked)
+    console.log('up', input.checked, input.get('type'));
+    
+    if (input.checked)
     {
-      switch(input.get('type'))
+      switch (input.get('type'))
       {
         case 'checkbox':
           trigger.setStyle('background-position','0 0');
@@ -195,18 +199,19 @@ var mooFormElements = new Class({
     }
     else
     {
-      switch(input.get('type'))
+      switch (input.get('type'))
       {
         case 'checkbox':
           trigger.setStyle('background-position','0 -'+ this.options.checkbox.height*2 +'px');
           break;
         // Radio buttons are more complex as they exist as part of a group
         case 'radio':
+          trigger.setStyle('background-position','0 -'+ this.options.checkbox.height*3 +'px');
           group = input.get('name');
-          $$('input[name='+ group +']').each(
+          $$('input[name='+ group +']').each (
             function (grouped_input)
             {
-              if(grouped_input == input) return; // don't action the clicked one
+              if (grouped_input == input) return; // don't action the clicked one
               grouped_input.getPrevious('span.radio').setStyle('background-position','0 0');
             }
           );
@@ -218,13 +223,13 @@ var mooFormElements = new Class({
   
   widgetClear:    function (ev)
   {
-    $$('input[type=checkbox].styled, input[type=radio].styled').each(
+    $$('input[type=checkbox].styled, input[type=radio].styled').each (
       function (input)
       {
         trigger = input.getPrevious('span.'+input.get('type'));
-        if(input.checked)
+        if (input.checked)
         {
-          switch(input.get('type'))
+          switch (input.get('type'))
           {
             case 'checkbox':
               trigger.setStyle('background-position','0 -'+ this.options.checkbox.height*2 + 'px');
